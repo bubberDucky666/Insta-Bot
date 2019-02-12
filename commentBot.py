@@ -1,8 +1,8 @@
 from selenium import webdriver
 from selenium.common.exceptions 		import TimeoutException
 from selenium.webdriver.support.ui 		import WebDriverWait 
-from selenium.webdriver.support 		import expected_conditions as EC
-from selenium.webdriver.chrome.options 	import Options
+#from selenium.webdriver.support 		import expected_conditions as EC
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.keys 	import Keys
 import time 
 
@@ -30,14 +30,7 @@ def logIn(driver, username, password, tryTime):
 		except:
 			pass
 
-def comment(username, password, tryTime, subject, message, headless, dateDict):
-
-	#create driver instance and log in
-	options = Options()  
-	options.headless = headless
-	driver = webdriver.Chrome(chrome_options = options)
-
-	logIn(driver, username, password, tryTime)
+def comment(username, password, driver, tryTime, subject, message, headless, dateDict):
 	
 	if options.headless == False:
 		val = False
@@ -77,7 +70,7 @@ def comment(username, password, tryTime, subject, message, headless, dateDict):
 				res.click()
 			else:
 				print("it should be {}".format(subject))
-				error
+				this_is_an_intentional_error
 		except:
 			print("couldn't find user result")
 
@@ -132,25 +125,18 @@ def comment(username, password, tryTime, subject, message, headless, dateDict):
 	print("ended")
 	return dateDict
 
-def followerList(username, password, tryTime, headless):
-
-	#create driver instance and log in
-	options = Options()  
-	options.headless = headless
-	driver = webdriver.Chrome(chrome_options = options)
-
-	logIn(driver, username, password, tryTime)
+def followerList(username, password, driver, tryTime, headless):
 	
-	if options.headless == False:
-		val = False
-		while val == False:
-			try:
-				thing = driver.find_element_by_xpath("//div[@class='mt3GC']/button[1]")
-				val = True
-			except:
-				print("fucking preferences")
+	# if options.headless == False:
+	# 	val = False
+	# 	while val == False:
+	# 		try:
+	# 			thing = driver.find_element_by_xpath("//div[@class='mt3GC']/button[1]")
+	# 			val = True
+	# 		except:
+	# 			print("fucking preferences")
 
-		thing.click()
+	# 	thing.click()
 
 	#go to profile
 	driver.get("https://www.instagram.com/{}/".format(username))
@@ -199,7 +185,7 @@ def followerList(username, password, tryTime, headless):
 			else:
 				if counter % 1000 == 0:
 					driver.refresh()
-					followerList(username, password, tryTime, headless)
+					followerList(username, password, driver, tryTime, headless)
 					return True
 
 			numO = numC
@@ -271,7 +257,6 @@ def dateCheck(dateDict, dOut, subject):
 
 
 if __name__ == "__main__":
-	dateDict = {}
 
 	username = "hahayeahbot"
 	password = "123123123JK"
@@ -279,7 +264,15 @@ if __name__ == "__main__":
 	subject  = "nastyfeminism"
 	message  = "beep boop"
 	headless = False
+	dateDict = {}	
+	
+	#create driver instance and log in
+	options = Options()  
+	options.headless = False
+	driver = webdriver.Firefox(options = options)
 
-	followerList(username, password, tryTime, headless)
+	logIn(driver, username, password, tryTime)
+
+	comment(username, password, driver, tryTime, subject, message, headless, dateDict)
 	print("\n\n\n")
 	
