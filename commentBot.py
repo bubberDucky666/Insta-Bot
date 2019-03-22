@@ -99,11 +99,10 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 		except:
 			f = time.time()
 			print("couldn't get image")
+
 			if f - s >= 30:
 				break
-
-	input("There should be an image here")
-	
+				
 	dOut = dateGet(driver)
 	if dateCheck(dateDict, dOut, subject) == True:
 		print("photo found")
