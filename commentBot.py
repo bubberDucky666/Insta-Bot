@@ -15,6 +15,7 @@ def logIn(driver, username, password, tryTime):
 	
 	#gets the input elements 
 	val = False
+	s   = time.time()
 	while val == False:
 		try:
 			usernameInput = driver.find_element_by_xpath("//input[@name='username']")
@@ -28,8 +29,11 @@ def logIn(driver, username, password, tryTime):
 			time.sleep(2)
 		
 		except:
-			pass
+			f = time.time()
+			if f - s >= 600:
+				break
 
+#MUST LOG IN TO INSTA FIRST
 def comment(username, password, driver, tryTime, subject, message, headless, dateDict):
 	
 	if options.headless == False:
@@ -45,12 +49,16 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 	
 	#find users's home page
 	val = False
+	s   = time.tim()
 	while val == False:
 		try:
 			searchBar = driver.find_element_by_xpath("//div[@class='MWDvN ']/div[2]/input")
 			val = True
 		except:
+			f = time.time()
 			print('searchBar Issue')
+			if f - s >= 600:
+				break
 	
 	'''searchBar = driver.find_element_by_xpath("//div[@class='MWDvN ']/div[2]/input")
 	time.sleep(tryTime)'''
@@ -58,6 +66,7 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 	
 	#clicks on user result
 	val = False
+	s	= time.time()
 	while val == False:
 		try:
 			res  = driver.find_element_by_xpath("//div[@class='z556c']")
@@ -72,17 +81,29 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 				print("it should be {}".format(subject))
 				this_is_an_intentional_error
 		except:
+			f = time.time()
 			print("couldn't find user result")
+			if f - s >= 600:
+				break
 
 	#Image shit is down here boiiiiiiiiiiiiiiiiiiiiiii - - - - - - - - - - - - - - - - - - -
 	val = False
+	s 	= time.time()
+	time.sleep(3)
 	while val == False:
 		try:
-			img = driver.find_elements_by_class_name("_bz0w")[0]
+			img = driver.find_elements_by_class_name("_bz0w")[0] #ISSUE IS HERE BOYO
+			input(img)
+			img.click()
 			img.click()
 			val = True
 		except:
+			f = time.time()
 			print("couldn't get image")
+			if f - s >= 600:
+				break
+
+	input("There should be an image here")
 	
 	dOut = dateGet(driver)
 	if dateCheck(dateDict, dOut, subject) == True:
@@ -94,22 +115,30 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 	
 	#comment on image
 	val = False
+	s 	= time.time()
 	while val == False:
 		try:
 			commentBox = driver.find_element_by_xpath("//span[@class='_15y0l']/button[1]")
 			val = True
 		except:
+			f = time.time()
 			print("Can't find comment button")
+			if f - s >= 600:
+				break
 
 	commentBox.click()
 	
 	val = False
+	s 	= time.time()
 	while val == False:
 		try:
 			commentForm = driver.find_element_by_xpath("//form[@class='X7cDz']/textarea")
 			val = True
 		except:	
+			f = time.time()
 			print("can't find comment input area")
+			if f - s >= 600:
+				break
 	
 	print('sending message')
 	
@@ -213,13 +242,17 @@ def followerList(username, password, driver, tryTime, headless):
 def dateGet(driver): #must be on specific image to call
 
 	val = False
+	s 	= time.time()
 	while val == False:
 		try:
 			timeTag  = driver.find_element_by_xpath("//a[@class='c-Yi7']/time")
 			val = True
 		
 		except:
+			f = time.time()
 			print('yo when was this posted tho')
+			if f - s >= 600:
+				break				
 
 	dT = str(timeTag.get_attribute("datetime"))
 	
@@ -246,7 +279,7 @@ def dateCheck(dateDict, dOut, subject):
 		return True
 	else:
 		for i in range(len(dOut)):
-			if dOut[i] < dateDict[subject][i]:
+			if dOut[i] <= dateDict[subject][i]:
 				return False
 			elif dOut[i] > dateDict[subject][i]:
 				dateDict[subject] = dOut
