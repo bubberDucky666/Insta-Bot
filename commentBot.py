@@ -36,7 +36,7 @@ def logIn(driver, username, password, tryTime):
 #MUST LOG IN TO INSTA FIRST
 def comment(username, password, driver, tryTime, subject, message, headless, dateDict):
 	
-	if options.headless == False:
+	if headless == False:
 		val = False
 		while val == False:
 			try:
