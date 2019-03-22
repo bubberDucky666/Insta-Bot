@@ -21,12 +21,12 @@ def logIn(driver, username, password, tryTime):
 			passwordInput.send_keys(password)
 
 			#submit the form
-			passwordInput.submit()
+			passwordInput.suresebmit()
 			time.sleep(2)
 		
 		except:
 			f = time.time()
-			if f - s >= 30:
+			if f - s >= 15:
 				exit()
 
 #MUST LOG IN TO INSTA FIRST
@@ -42,7 +42,7 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 			except:
 				f = time.time()
 				print("fucking preferences")
-				if f - s >= 30:
+				if f - s >= 15:
 					exit()
 
 		thing.click()
@@ -57,7 +57,7 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 		except:
 			f = time.time()
 			print('searchBar Issue')
-			if f - s >= 30:
+			if f - s >= 15:
 				exit()
 	
 	'''searchBar = driver.find_element_by_xpath("//div[@class='MWDvN ']/div[2]/input")
@@ -83,7 +83,7 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 		except:
 			f = time.time()
 			print("couldn't find user result")
-			if f - s >= 30:
+			if f - s >= 15:
 				exit()
 
 	#Image shit is down here boiiiiiiiiiiiiiiiiiiiiiii - - - - - - - - - - - - - - - - - - -
@@ -99,7 +99,7 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 			f = time.time()
 			print("couldn't get image")
 
-			if f - s >= 30:
+			if f - s >= 15:
 				exit()
 
 	dOut = dateGet(driver)
@@ -125,7 +125,7 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 		except:
 			f = time.time()
 			print("Can't find comment button")
-			if f - s >= 30:
+			if f - s >= 15:
 				exit()
 
 	commentBox.click()
@@ -139,7 +139,7 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 		except:	
 			f = time.time()
 			print("can't find comment input area")
-			if f - s >= 30:
+			if f - s >= 15:
 				exit()
 	
 	print('sending message')
@@ -254,7 +254,7 @@ def dateGet(driver): #must be on specific image to call
 		except:
 			f = time.time()
 			print('yo when was this posted tho')
-			if f - s >= 30:
+			if f - s >= 15:
 				break				
 
 	dT = str(timeTag.get_attribute("datetime"))
