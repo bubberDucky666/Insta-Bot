@@ -30,7 +30,7 @@ def logIn(driver, username, password, tryTime):
 		
 		except:
 			f = time.time()
-			if f - s >= 600:
+			if f - s >= 30:
 				break
 
 #MUST LOG IN TO INSTA FIRST
@@ -57,7 +57,7 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 		except:
 			f = time.time()
 			print('searchBar Issue')
-			if f - s >= 600:
+			if f - s >= 30:
 				break
 	
 	'''searchBar = driver.find_element_by_xpath("//div[@class='MWDvN ']/div[2]/input")
@@ -83,7 +83,7 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 		except:
 			f = time.time()
 			print("couldn't find user result")
-			if f - s >= 600:
+			if f - s >= 30:
 				break
 
 	#Image shit is down here boiiiiiiiiiiiiiiiiiiiiiii - - - - - - - - - - - - - - - - - - -
@@ -93,14 +93,13 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 	while val == False:
 		try:
 			img = driver.find_elements_by_class_name("_bz0w")[0] #ISSUE IS HERE BOYO
-			input(img)
 			img.click()
 			img.click()
 			val = True
 		except:
 			f = time.time()
 			print("couldn't get image")
-			if f - s >= 600:
+			if f - s >= 30:
 				break
 
 	input("There should be an image here")
@@ -123,7 +122,7 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 		except:
 			f = time.time()
 			print("Can't find comment button")
-			if f - s >= 600:
+			if f - s >= 30:
 				break
 
 	commentBox.click()
@@ -137,7 +136,7 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 		except:	
 			f = time.time()
 			print("can't find comment input area")
-			if f - s >= 600:
+			if f - s >= 30:
 				break
 	
 	print('sending message')
@@ -251,7 +250,7 @@ def dateGet(driver): #must be on specific image to call
 		except:
 			f = time.time()
 			print('yo when was this posted tho')
-			if f - s >= 600:
+			if f - s >= 30:
 				break				
 
 	dT = str(timeTag.get_attribute("datetime"))
