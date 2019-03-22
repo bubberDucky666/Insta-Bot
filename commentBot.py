@@ -142,9 +142,8 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 	commentForm.send_keys(message)	
 	time.sleep(tryTime)
 
-	commentForm.send_keys(Keys.RETURN)
 	commentForm.submit()
-	print('submitted?')
+	input('submitted?')
 	
 
 	driver.quit()
@@ -293,7 +292,7 @@ if __name__ == "__main__":
 	password = "123123123JK"
 	tryTime  = 1
 	subject  = "nastyfeminism"
-	message  = "beep boop"
+	message  = "cow"
 	headless = False
 	dateDict = {}	
 	
