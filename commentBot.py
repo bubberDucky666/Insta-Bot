@@ -256,7 +256,7 @@ def dateGet(driver): #must be on specific image to call
 			print('yo when was this posted tho')
 			if f - s >= 15:
 				exit				
-
+				
 	dT = str(timeTag.get_attribute("datetime"))
 	
 	t        = dT[-13:-1]
