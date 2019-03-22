@@ -49,7 +49,7 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 	
 	#find users's home page
 	val = False
-	s   = time.tim()
+	s   = time.time()
 	while val == False:
 		try:
 			searchBar = driver.find_element_by_xpath("//div[@class='MWDvN ']/div[2]/input")
