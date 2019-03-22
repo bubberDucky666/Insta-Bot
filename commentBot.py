@@ -21,7 +21,7 @@ def logIn(driver, username, password, tryTime):
 			passwordInput.send_keys(password)
 
 			#submit the form
-			passwordInput.suresebmit()
+			passwordInput.submit()
 			time.sleep(2)
 		
 		except:
