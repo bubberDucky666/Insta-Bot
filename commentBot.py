@@ -1,9 +1,5 @@
-from selenium import webdriver
-from selenium.common.exceptions 		import TimeoutException
-from selenium.webdriver.support.ui 		import WebDriverWait 
-#from selenium.webdriver.support 		import expected_conditions as EC
+from selenium 						    import webdriver
 from selenium.webdriver.firefox.options import Options
-from selenium.webdriver.common.keys 	import Keys
 import time 
 
 
@@ -31,19 +27,23 @@ def logIn(driver, username, password, tryTime):
 		except:
 			f = time.time()
 			if f - s >= 30:
-				break
+				exit()
 
 #MUST LOG IN TO INSTA FIRST
 def comment(username, password, driver, tryTime, subject, message, headless, dateDict):
 	
 	if headless == False:
 		val = False
+		s 	= time.time()
 		while val == False:
 			try:
 				thing = driver.find_element_by_xpath("//div[@class='mt3GC']/button[1]")
 				val = True
 			except:
+				f = time.time()
 				print("fucking preferences")
+				if f - s >= 30:
+					exit()
 
 		thing.click()
 	
@@ -58,7 +58,7 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 			f = time.time()
 			print('searchBar Issue')
 			if f - s >= 30:
-				break
+				exit()
 	
 	'''searchBar = driver.find_element_by_xpath("//div[@class='MWDvN ']/div[2]/input")
 	time.sleep(tryTime)'''
@@ -84,7 +84,7 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 			f = time.time()
 			print("couldn't find user result")
 			if f - s >= 30:
-				break
+				exit()
 
 	#Image shit is down here boiiiiiiiiiiiiiiiiiiiiiii - - - - - - - - - - - - - - - - - - -
 	val = False
@@ -100,7 +100,7 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 			print("couldn't get image")
 
 			if f - s >= 30:
-				break
+				exit()
 
 	dOut = dateGet(driver)
 
@@ -126,7 +126,7 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 			f = time.time()
 			print("Can't find comment button")
 			if f - s >= 30:
-				break
+				exit()
 
 	commentBox.click()
 	
@@ -140,7 +140,7 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 			f = time.time()
 			print("can't find comment input area")
 			if f - s >= 30:
-				break
+				exit()
 	
 	print('sending message')
 	
