@@ -142,7 +142,7 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 	commentForm.send_keys(message)	
 	time.sleep(tryTime)
 
-	#commentForm.send_keys(Keys.RETURN)
+	commentForm.send_keys(Keys.RETURN)
 	commentForm.submit()
 	print('submitted?')
 	
