@@ -103,11 +103,16 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 				break
 
 	dOut = dateGet(driver)
-	if dateCheck(dateDict, dOut, subject) == True:
+
+	# Program returns same dateDict if the image is the same one
+	#----------------------------------------------------------------
+	if dateCheck(dateDict, dOut, subject) == True: 
 		print("photo found")
 	else:
 		print('No new photo')
 		return dateDict
+	#----------------------------------------------------------------
+		
 
 	
 	#comment on image
@@ -293,7 +298,7 @@ if __name__ == "__main__":
 	password = "123123123JK"
 	tryTime  = 1
 	subject  = "nastyfeminism"
-	message  = "cow"
+	message  = "c o w"
 	headless = False
 	dateDict = {}	
 	
