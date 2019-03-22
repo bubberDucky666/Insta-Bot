@@ -143,7 +143,8 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 	time.sleep(tryTime)
 
 	commentForm.submit()
-	input('submitted?')
+	time.sleep(tryTime)
+	print('submitted?')
 	
 
 	driver.quit()
