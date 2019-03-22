@@ -94,7 +94,6 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 		try:
 			img = driver.find_elements_by_class_name("_bz0w")[0] #ISSUE IS HERE BOYO
 			img.click()
-			img.click()
 			val = True
 		except:
 			f = time.time()
@@ -102,7 +101,7 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 
 			if f - s >= 30:
 				break
-				
+
 	dOut = dateGet(driver)
 	if dateCheck(dateDict, dOut, subject) == True:
 		print("photo found")
@@ -140,7 +139,8 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 	
 	print('sending message')
 	
-	commentForm.send_keys(message[:len(message)])	
+	commentForm.send_keys(message)	
+	time.sleep(tryTime)
 
 	#commentForm.send_keys(Keys.RETURN)
 	commentForm.submit()
