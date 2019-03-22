@@ -7,7 +7,7 @@ pTime 	 = time.time()
 
 interv	 = 5 #minutes
 
-username = "hahayeahbot"
+username = "politicalreminderbot"
 password = "123123123JK"
 tryTime  = 10
 subjects = ["nastyfeminism", "quality._.equality"]

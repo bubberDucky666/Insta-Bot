@@ -255,7 +255,7 @@ def dateGet(driver): #must be on specific image to call
 			f = time.time()
 			print('yo when was this posted tho')
 			if f - s >= 15:
-				break				
+				exit				
 
 	dT = str(timeTag.get_attribute("datetime"))
 	
@@ -294,17 +294,17 @@ def dateCheck(dateDict, dOut, subject):
 
 if __name__ == "__main__":
 
-	username = "hahayeahbot"
+	username = "politicalreminderbot"
 	password = "123123123JK"
 	tryTime  = 1
 	subject  = "nastyfeminism"
 	message  = "c o w"
-	headless = True
+	headless = False
 	dateDict = {}	
 	
 	#create driver instance and log in
 	options = Options()  
-	options.headless = False
+	options.headless = headless
 	driver = webdriver.Firefox(options = options)
 
 	logIn(driver, username, password, tryTime)
