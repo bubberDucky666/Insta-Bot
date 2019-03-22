@@ -299,7 +299,7 @@ if __name__ == "__main__":
 	tryTime  = 1
 	subject  = "nastyfeminism"
 	message  = "c o w"
-	headless = False
+	headless = True
 	dateDict = {}	
 	
 	#create driver instance and log in
