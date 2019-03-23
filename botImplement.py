@@ -16,15 +16,17 @@ dateDict = {}
 message  = open("message.txt").read()
 
 #create driver instance and log in
-options = Options()
+options 		 = Options()
 options.headless = headless							#changes driver processes
-driver = webdriver.Firefox(options = options)
+driver 			 = webdriver.Firefox(options = options)
 
 bot.logIn(driver, username, password, tryTime)
 
-while True:
+for subject in subjects:
+	dateDict = bot.comment(username, password, driver, tryTime, subject, message, headless, dateDict)
 
+while True:
 	cTime = time.time()
-	if (cTime - pTime) % (60*interv) == 0 :
+	if (cTime - pTime) % (60*interv) == 0:
 		for subject in subjects:
 			dateDict = bot.comment(username, password, driver, tryTime, subject, message, headless, dateDict)

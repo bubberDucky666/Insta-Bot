@@ -27,22 +27,25 @@ def logIn(driver, username, password, tryTime):
 		except:
 			f = time.time()
 			if f - s >= 15:
+				driver.quit()
 				exit()
 
 #MUST LOG IN TO INSTA FIRST
 def comment(username, password, driver, tryTime, subject, message, headless, dateDict):
 	
-	if headless == False:
+	if True:#headless == False:
 		val = False
 		s 	= time.time()
 		while val == False:
 			try:
+				print("found the preference button")
 				thing = driver.find_element_by_xpath("//div[@class='mt3GC']/button[1]")
-				val = True
+				val	  = True
 			except:
 				f = time.time()
 				print("fucking preferences")
 				if f - s >= 15:
+					driver.quit()
 					exit()
 
 		thing.click()
@@ -58,6 +61,7 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 			f = time.time()
 			print('searchBar Issue')
 			if f - s >= 15:
+				driver.quit()
 				exit()
 	
 	'''searchBar = driver.find_element_by_xpath("//div[@class='MWDvN ']/div[2]/input")
@@ -84,24 +88,30 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 			f = time.time()
 			print("couldn't find user result")
 			if f - s >= 15:
+				driver.quit()
 				exit()
 
 	#Image shit is down here boiiiiiiiiiiiiiiiiiiiiiii - - - - - - - - - - - - - - - - - - -
-	val = False
-	s 	= time.time()
-	time.sleep(3)
+	val  = False
+	s 	 = time.time()
+	cont = 0
+	#time.sleep(3)
 	while val == False:
 		try:
-			img = driver.find_elements_by_class_name("_bz0w")[0] #ISSUE IS HERE BOYO
+			img 	  = driver.find_elements_by_class_name("_bz0w")[0] #ISSUE IS HERE BOYO
+			if cont%2 == 0: img.click()
+			val       = True
 			img.click()
-			val = True
+
+			cont += 1
 		except:
 			f = time.time()
 			print("couldn't get image")
 
 			if f - s >= 15:
+				driver.quit()
 				exit()
-
+	input("stop test now")
 	dOut = dateGet(driver)
 
 	# Program returns same dateDict if the image is the same one
@@ -121,11 +131,12 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 	while val == False:
 		try:
 			commentBox = driver.find_element_by_xpath("//span[@class='_15y0l']/button[1]")
-			val = True
+			val		   = True
 		except:
 			f = time.time()
 			print("Can't find comment button")
 			if f - s >= 15:
+				driver.quit()
 				exit()
 
 	commentBox.click()
@@ -135,11 +146,12 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 	while val == False:
 		try:
 			commentForm = driver.find_element_by_xpath("//form[@class='X7cDz']/textarea")
-			val = True
+			val 		= True
 		except:	
 			f = time.time()
 			print("can't find comment input area")
 			if f - s >= 15:
+				driver.quit()
 				exit()
 	
 	print('sending message')
@@ -249,14 +261,14 @@ def dateGet(driver): #must be on specific image to call
 	while val == False:
 		try:
 			timeTag  = driver.find_element_by_xpath("//a[@class='c-Yi7']/time")
-			val = True
-		
+			val 	 = True
 		except:
 			f = time.time()
 			print('yo when was this posted tho')
 			if f - s >= 15:
-				exit				
-				
+				driver.quit()
+				exit()				
+
 	dT = str(timeTag.get_attribute("datetime"))
 	
 	t        = dT[-13:-1]
@@ -299,7 +311,7 @@ if __name__ == "__main__":
 	tryTime  = 1
 	subject  = "nastyfeminism"
 	message  = "c o w"
-	headless = False
+	headless = True
 	dateDict = {}	
 	
 	#create driver instance and log in
