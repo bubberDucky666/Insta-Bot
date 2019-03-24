@@ -11,7 +11,7 @@ username = "politicalreminderbot"
 password = "123123123JK"
 tryTime  = 10
 subjects = ["nastyfeminism", "quality._.equality"]
-headless = False										#changes script processes
+headless = True										#changes script processes
 message  = open("message.txt").read()
 dateDict = {}
 
