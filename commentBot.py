@@ -51,45 +51,47 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 		thing.click()
 	
 	#find users's home page
-	val = False
-	s   = time.time()
-	while val == False:
-		try:
-			searchBar = driver.find_element_by_xpath("//div[@class='MWDvN ']/div[2]/input")
-			val = True
-		except:
-			f = time.time()
-			print('searchBar Issue')
-			if f - s >= 15:
-				driver.quit()
-				exit()
+	driver.get("https://www.instagram.com/{}/".format(subject))
+
+	# val = False
+	# s   = time.time()
+	# while val == False:
+	# 	try:
+	# 		searchBar = driver.find_element_by_xpath("//div[@class='MWDvN ']/div[2]/input")
+	# 		val = True
+	# 	except:
+	# 		f = time.time()
+	# 		print('searchBar Issue')
+	# 		if f - s >= 15:
+	# 			driver.quit()
+	# 			exit()
+
+	# searchBar.send_keys(subject)
 	
-	'''searchBar = driver.find_element_by_xpath("//div[@class='MWDvN ']/div[2]/input")
-	time.sleep(tryTime)'''
-	searchBar.send_keys(subject)
-	
-	#clicks on user result
-	val = False
-	s	= time.time()
-	while val == False:
-		try:
-			res  = driver.find_element_by_xpath("//div[@class='z556c']")
-			name = str(res.find_element_by_xpath("//div[@class='uyeeR']/span").text)
-			print("the name i see is {}".format(name))
-			
-			if name.lower() == subject.lower():
-				val = True
-				print('User found')
-				res.click()
-			else:
-				print("it should be {}".format(subject))
-				this_is_an_intentional_error
-		except:
-			f = time.time()
-			print("couldn't find user result")
-			if f - s >= 15:
-				driver.quit()
-				exit()
+	# #clicks on user result
+	# val = False
+	# s	= time.time()
+	# while val == False:
+	# 	try:
+	# 		res  = driver.find_elements_by_xpath("//div[@class='z556c']")
+	# 		for i in res:
+	# 			name = str(i.find_element_by_xpath("//div[@class='uyeeR']/span").text)
+	# 			print("the name i see is {}".format(name))
+				
+	# 			if name.lower() == subject.lower():
+	# 				val = True
+	# 				print('User found')
+	# 				res.click()
+	# 				break
+	# 			else:
+	# 				print("it should be {}".format(subject))
+	# 				this_is_an_intentional_error
+	# 	except:
+	# 		f = time.time()
+	# 		print("couldn't find user result")
+	# 		if f - s >= 15:
+	# 			driver.quit()
+	# 			exit()
 
 	#Image shit is down here boiiiiiiiiiiiiiiiiiiiiiii - - - - - - - - - - - - - - - - - - -
 	val  = False
@@ -307,7 +309,7 @@ if __name__ == "__main__":
 	tryTime  = 1
 	subject  = "nastyfeminism"
 	message  = "c o w"
-	headless = True
+	headless = False
 	dateDict = {}	
 	
 	#create driver instance and log in
