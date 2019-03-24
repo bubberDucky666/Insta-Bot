@@ -296,7 +296,7 @@ def dateCheck(dateDict, dOut, subject):
 				dateDict[subject] = dOut
 				return True
 			else:
-				pass
+				print("something went wronge checking the dates compared to the old ones")
 		return False
 
 
