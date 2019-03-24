@@ -38,8 +38,8 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 		s 	= time.time()
 		while val == False:
 			try:
-				print("found the preference button")
 				thing = driver.find_element_by_xpath("//div[@class='mt3GC']/button[1]")
+				print("found the preference button")
 				val	  = True
 			except:
 				f = time.time()
@@ -111,7 +111,6 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 			if f - s >= 15:
 				driver.quit()
 				exit()
-	input("stop test now")
 	dOut = dateGet(driver)
 
 	# Program returns same dateDict if the image is the same one
@@ -157,15 +156,12 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 	print('sending message')
 	
 	commentForm.send_keys(message)	
-	time.sleep(tryTime)
+	#time.sleep(tryTime/4)
 
 	commentForm.submit()
-	time.sleep(tryTime)
+	#time.sleep(tryTime)
 	print('submitted?')
 	
-
-	driver.quit()
-
 	print("ended")
 	return dateDict
 
@@ -289,7 +285,7 @@ def dateGet(driver): #must be on specific image to call
 	return dOut
 
 def dateCheck(dateDict, dOut, subject):
-	if len(dateDict) == 0:
+	if len(dateDict[subject]) == 0:
 		dateDict[subject] = dOut
 		return True
 	else:
@@ -322,5 +318,7 @@ if __name__ == "__main__":
 	logIn(driver, username, password, tryTime)
 
 	comment(username, password, driver, tryTime, subject, message, headless, dateDict)
+	driver.quit()
+
 	print("\n\n\n")
 	

@@ -12,8 +12,12 @@ password = "123123123JK"
 tryTime  = 10
 subjects = ["nastyfeminism", "quality._.equality"]
 headless = False										#changes script processes
-dateDict = {}
 message  = open("message.txt").read()
+dateDict = {}
+
+for sub in subjects:
+	dateDict[sub] = []
+	
 
 #create driver instance and log in
 options 		 = Options()
@@ -24,9 +28,11 @@ bot.logIn(driver, username, password, tryTime)
 
 for subject in subjects:
 	dateDict = bot.comment(username, password, driver, tryTime, subject, message, headless, dateDict)
+	driver.get("https://www.instagram.com/")
 
 while True:
 	cTime = time.time()
 	if (cTime - pTime) % (60*interv) == 0:
 		for subject in subjects:
 			dateDict = bot.comment(username, password, driver, tryTime, subject, message, headless, dateDict)
+			driver.get("https://www.instagram.com/")
