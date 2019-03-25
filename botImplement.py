@@ -32,7 +32,7 @@ for subject in subjects:
 	driver.get("https://www.instagram.com/")
 
 cTime = time.time()
-while cTime - pTime <= 60*60*60*24*duration:
+while cTime - pTime <= 60*60*24*duration:
 	try:
 		cTime = time.time()
 		if (cTime - pTime) % (60*interv) == 0:
