@@ -137,8 +137,7 @@ def comment(username, password, driver, tryTime, subject, message, headless, dat
 			f = time.time()
 			print("Can't find comment button")
 			if f - s >= 15:
-				driver.quit()
-				exit()
+				return dateDict
 
 	commentBox.click()
 	
