@@ -16,7 +16,7 @@ message  = open("message.txt").read()
 dateDict = {}
 
 for sub in subjects:
-	dateDict[sub] = {}
+	dateDict[sub] = []
 	
 
 #create driver instance and log in

@@ -32,66 +32,10 @@ def logIn(driver, username, password, tryTime):
 
 #MUST LOG IN TO INSTA FIRST
 def comment(username, password, driver, tryTime, subject, message, headless, dateDict):
-	
-	if True:#headless == False:
-		val = False
-		s 	= time.time()
-		while val == False:
-			try:
-				thing = driver.find_element_by_xpath("//div[@class='mt3GC']/button[1]")
-				print("found the preference button")
-				val	  = True
-			except:
-				f = time.time()
-				print("fucking preferences")
-				if f - s >= 15:
-					driver.quit()
-					exit()
 
-		thing.click()
 	
 	#find users's home page
 	driver.get("https://www.instagram.com/{}/".format(subject))
-
-	# val = False
-	# s   = time.time()
-	# while val == False:
-	# 	try:
-	# 		searchBar = driver.find_element_by_xpath("//div[@class='MWDvN ']/div[2]/input")
-	# 		val = True
-	# 	except:
-	# 		f = time.time()
-	# 		print('searchBar Issue')
-	# 		if f - s >= 15:
-	# 			driver.quit()
-	# 			exit()
-
-	# searchBar.send_keys(subject)
-	
-	# #clicks on user result
-	# val = False
-	# s	= time.time()
-	# while val == False:
-	# 	try:
-	# 		res  = driver.find_elements_by_xpath("//div[@class='z556c']")
-	# 		for i in res:
-	# 			name = str(i.find_element_by_xpath("//div[@class='uyeeR']/span").text)
-	# 			print("the name i see is {}".format(name))
-				
-	# 			if name.lower() == subject.lower():
-	# 				val = True
-	# 				print('User found')
-	# 				res.click()
-	# 				break
-	# 			else:
-	# 				print("it should be {}".format(subject))
-	# 				this_is_an_intentional_error
-	# 	except:
-	# 		f = time.time()
-	# 		print("couldn't find user result")
-	# 		if f - s >= 15:
-	# 			driver.quit()
-	# 			exit()
 
 	#Image shit is down here boiiiiiiiiiiiiiiiiiiiiiii - - - - - - - - - - - - - - - - - - -
 	val  = False
@@ -306,10 +250,11 @@ if __name__ == "__main__":
 	username = "politicalreminderbot"
 	password = "123123123JK"
 	tryTime  = 1
-	subject  = "nastyfeminism"
+	subject  = "hyonaskloker"
 	message  = "c o w"
 	headless = False
-	dateDict = {}	
+	dateDict = {}
+	dateDict[subject] = []
 	
 	#create driver instance and log in
 	options = Options()  
