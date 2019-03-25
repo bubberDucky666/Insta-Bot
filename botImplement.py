@@ -11,12 +11,13 @@ username = "politicalreminderbot"
 password = "123123123JK"
 tryTime  = 10
 subjects = ["nastyfeminism", "republican.s", "republicanparty", "localdemocrazy", "occupydemocrats"]
-headless = True										#changes script processes (doesn't actually now lol)
-message  = open("message.txt").read()
+headless = False										#changes script processes (doesn't actually now lol)
+message  = "."#open("message.txt").read()
 dateDict = {}
+duration = 3 #days
 
 for sub in subjects:
-	dateDict[sub] = []
+	dateDict[sub] = {}
 	
 
 #create driver instance and log in
@@ -30,7 +31,8 @@ for subject in subjects:
 	dateDict = bot.comment(username, password, driver, tryTime, subject, message, headless, dateDict)
 	driver.get("https://www.instagram.com/")
 
-while True:
+cTime = time.time()
+while cTime - pTime <= 60*60*60*24*duration:
 	try:
 		cTime = time.time()
 		if (cTime - pTime) % (60*interv) == 0:
