@@ -119,7 +119,7 @@ def followerList(username, password, driver, tryTime, headless):
 	# 			thing = driver.find_element_by_xpath("//div[@class='mt3GC']/button[1]")
 	# 			val = True
 	# 		except:
-	# 			print("fucking preferences")
+	# 			print("issue with headless preferences")
 
 	# 	thing.click()
 
